@@ -3,7 +3,7 @@
 Plugin Name: Berkeley Engineering Widgets
 Description: Creates custom widgets for the Berkeley Engineering sites.
 Author: Stephanie Leary
-Version: 1.1
+Version: 1.2
 Author URI: http://stephanieleary.com
 Text Domain: beng
 */

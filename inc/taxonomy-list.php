@@ -18,6 +18,10 @@
 		if ( !$tax || ! taxonomy_exists( $tax ) )
 			return;
 
+		$term_count = get_terms( $tax, array( 'fields' => 'count' ) );
+		if ( !$term_count )
+			return;
+		
 		/** This filter is documented in wp-includes/widgets/class-wp-widget-pages.php */
 		$instance['title'] = apply_filters( 'widget_title', empty( $instance['title'] ) ? '' : $instance['title'], $instance, $this->id_base );
 
@@ -25,10 +29,14 @@
 
 		if ( !empty($instance['title']) )
 			echo $args['before_title'] . $instance['title'] . $args['after_title'];
-
+		
+		$tax_obj = get_taxonomy( $tax );
+		$labels = get_taxonomy_labels( $tax_obj );
+		
 		$tax_args = array(
 			'taxonomy'	=> $tax,
 			'title_li'	=> '',
+			'show_option_none' => $labels->not_found,
 		);
 		//$args = apply_filters( 'widget_tax_menu_args', $args );
 
@@ -57,7 +65,7 @@
 		$tax = isset( $instance['tax'] ) ? $instance['tax'] : '';
 
 		$args = array(
-		  'public'   => true
+		  'public'   => true,
 		); 
 		$output = 'objects'; // names or objects
 		$operator = 'and'; // 'and' or 'or'
