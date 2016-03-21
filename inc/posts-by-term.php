@@ -44,6 +44,12 @@
 		if ( !count( $posts ) )
 			return;
 		
+		$totalposts = count( $posts );
+		if ( -1 !== $instance['posts_per_page'] ) {
+			$post_args['posts_per_page'] = -1;
+			$post_args['fields'] = 'ids';
+			$totalposts = count( get_posts( $post_args ) );
+		}
 		
 		/** This filter is documented in wp-includes/widgets/class-wp-widget-pages.php */
 		$instance['title'] = apply_filters( 'widget_title', empty( $instance['title'] ) ? '' : $instance['title'], $instance, $this->id_base );
@@ -64,6 +70,14 @@
 			printf( '<li %s><a href="%s">%s</a></li>', $class, get_the_permalink( $post->ID ), apply_filters( 'the_title', $post->post_title ) );
 			
 		endforeach;
+		
+		if ( $totalposts > count( $posts ) ) {
+			if ( 'any' == $post_type )
+				$post_type = 'post';
+			$postobj = get_post_type_object( 'post' );
+			$termobj = get_term( $term, $tax );
+			printf( '<li><a href="%s" title="Show all %s labeled %s">%s</li>', get_term_link( $term, $tax ), $postobj->labels->name, $termobj->name, __( 'More...' ) );
+		}
 		
 		echo '</ul>';
 		
