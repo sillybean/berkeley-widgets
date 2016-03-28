@@ -3,7 +3,7 @@
 Plugin Name: Berkeley Engineering Widgets
 Description: Creates custom widgets for the Berkeley Engineering sites.
 Author: Stephanie Leary
-Version: 1.3
+Version: 1.3.1
 Author URI: http://stephanieleary.com
 Text Domain: beng
 */
@@ -14,6 +14,8 @@ function berkeley_widgets_init() {
 	register_widget( 'Berkeley_Calendar_XML_Widget' );
 	register_widget( 'Berkeley_Taxonomy_List_Widget' );
 	register_widget( 'Berkeley_Term_Posts_Widget' );
+	// Remove the WP Engine widget
+	unregister_widget( 'wpe_widget_powered_by' );
 }
 
 add_action( 'widgets_init', 'berkeley_widgets_init' );

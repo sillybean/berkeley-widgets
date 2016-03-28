@@ -97,20 +97,20 @@
 
 class Walker_Nav_Menu_Dropdown extends Walker_Nav_Menu {
 	
-	function start_lvl(&$output, $depth){
+	function start_lvl( &$output, $depth = 0, $args = array() ){
 		$indent = str_repeat("\t", $depth); // don't output children opening tag (`<ul>`)
 	}
 	
-	function end_lvl(&$output, $depth){
+	function end_lvl( &$output, $depth = 0, $args = array() ){
 		$indent = str_repeat("\t", $depth); // don't output children closing tag
 	}
 
-	function start_el(&$output, $item, $depth, $args) {
+	function start_el( &$output, $item, $depth = 0, $args = array(), $id = 0 ) {
  		$url = '#' !== $item->url ? $item->url : '';
  		$output .= '<option value="' . $url . '">' . $item->title;
 	}	
 	
-	function end_el(&$output, $item, $depth){
+	function end_el( &$output, $item, $depth = 0, $args = array() ){
 		$output .= "</option>\n"; // replace closing </li> with the option tag
 	}
 }

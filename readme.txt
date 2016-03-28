@@ -6,7 +6,7 @@ Description: Custom post types and taxonomies, plus various helper filters and D
 License: GPL2
 Requires at least: 3.1
 Tested up to: 4.4.2
-Stable tag: 1.3
+Stable tag: 1.3.1
 
 == Description ==
 
@@ -23,6 +23,9 @@ Creates custom widgets for Berkeley Engineering sites:
 
 == Changelog ==
 
+= 1.3.1 =
+* Fixed warnings in posts by term widget.
+* Unregister the Powered by WP Engine widget.
 = 1.3 =
 * Added posts by term widget.
 = 1.2.2 =
