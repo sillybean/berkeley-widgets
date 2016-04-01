@@ -74,7 +74,7 @@
 		if ( $totalposts > count( $posts ) ) {
 			if ( 'any' == $post_type )
 				$post_type = 'post';
-			$postobj = get_post_type_object( 'post' );
+			$postobj = get_post_type_object( $post_type );
 			$termobj = get_term( $term, $tax );
 			printf( '<li><a href="%s" title="Show all %s labeled %s">%s</li>', get_term_link( $term, $tax ), $postobj->labels->name, $termobj->name, __( 'More...' ) );
 		}
