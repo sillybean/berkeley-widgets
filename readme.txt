@@ -2,11 +2,13 @@
 Contributors: sillybean
 Author: Stephanie Leary
 Author URI: http://stephanieleary.com
+GitHub Plugin URI: https://github.com/sillybean/berkeley-widgets
+GitHub Branch:     master
 Description: Custom post types and taxonomies, plus various helper filters and Dashboard widget.
 License: GPL2
 Requires at least: 3.1
 Tested up to: 4.4.2
-Stable tag: 1.3.1
+Stable tag: 1.6
 
 == Description ==
 
@@ -23,16 +25,6 @@ Creates custom widgets for Berkeley Engineering sites:
 
 == Changelog ==
 
-= 1.3.1 =
-* Fixed warnings in posts by term widget.
-* Unregister the Powered by WP Engine widget.
-= 1.3 =
-* Added posts by term widget.
-= 1.2.2 =
-* Change the way post type is selected to work on more pages.
-* Get post type from a taxonomy's associated object types when on a taxonomy archive.
-= 1.2.1 =
-* Add post_type query arg to term links (filter links to the current post type)
 = 1.2 =
 * Improved taxonomy list widget
 = 1.1 =
