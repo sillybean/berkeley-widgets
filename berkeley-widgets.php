@@ -6,6 +6,8 @@ Author: Stephanie Leary
 Version: 1.3.1
 Author URI: http://stephanieleary.com
 Text Domain: beng
+GitHub Plugin URI: https://github.com/sillybean/berkeley-widgets
+GitHub Branch:     master
 */
 
 // initialize all custom widgets
