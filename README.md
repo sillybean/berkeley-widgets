@@ -8,7 +8,7 @@ Description: Custom post types and taxonomies, plus various helper filters and D
 License: GPL2
 Requires at least: 3.1
 Tested up to: 4.4.2
-Stable tag: 1.6
+Stable tag: 1.3.2
 
 == Description ==
 
@@ -25,6 +25,9 @@ Creates custom widgets for Berkeley Engineering sites:
 
 == Changelog ==
 
+= 1.3.2 =
+* Menu select option tag fix
+* Moved helper functions to appropriate files
 = 1.2 =
 * Improved taxonomy list widget
 = 1.1 =

@@ -106,17 +106,10 @@ class Walker_Nav_Menu_Dropdown extends Walker_Nav_Menu {
 	}
 
 	function start_el( &$output, $item, $depth = 0, $args = array(), $id = 0 ) {
- 		$url = '#' !== $item->url ? $item->url : '';
- 		$output .= '<option value="' . $url . '">' . $item->title;
+ 		$output .= '<option value="' . $item->url . '">' . str_repeat("&nbsp;&nbsp;", $depth) . $item->title . "</option>\n";
 	}	
 	
 	function end_el( &$output, $item, $depth = 0, $args = array() ){
-		$output .= "</option>\n"; // replace closing </li> with the option tag
+		//$output .= "</option>\n"; // replace closing </li> with the option tag
 	}
-}
-
-// helper function for the feed display widget
-function scl_not_empty( $val ) {
-	$val = str_replace( array( "\n", "\r", "\t" ), '', $val );
-    return !empty( $val );
 }

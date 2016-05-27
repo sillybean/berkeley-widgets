@@ -198,3 +198,9 @@
 		<?php
 	}
 }
+
+// helper function for the feed display widget
+function scl_not_empty( $val ) {
+	$val = str_replace( array( "\n", "\r", "\t" ), '', $val );
+    return !empty( $val );
+}
