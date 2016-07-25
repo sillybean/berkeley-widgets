@@ -28,7 +28,9 @@
 		echo $args['before_widget'];
 
 		if ( !empty($instance['title']) )
-			echo $args['before_title'] . $instance['title'] . $args['after_title'] . '<ul>';
+			echo $args['before_title'] . $instance['title'] . $args['after_title'];
+
+		echo '<ul>';
 
 		$eventlist = array();
 		
