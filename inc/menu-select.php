@@ -29,7 +29,7 @@
 			'fallback_cb' => '',
 			'menu'        => $nav_menu,
 			'walker'         => new Walker_Nav_Menu_Dropdown(),
-			'items_wrap'     => '<div class="select-menu"><form><select onchange="if (this.value) window.location.href=this.value">%3$s</select></form></div>',
+			'items_wrap'     => '<div class="select-menu"><form><label for="menu-dropdown" class="screen-reader-text">Navigate to...</label><select name="menu-dropdown" onchange="if (this.value) window.location.href=this.value">%3$s</select></form></div>',
 		);
 
 
