@@ -5,8 +5,8 @@
  class WP_Nav_Menu_Dropdown_Widget extends WP_Widget {
 
 	public function __construct() {
-		$widget_ops = array( 'description' => __('Add a custom menu dropdown to your sidebar.') );
-		parent::__construct( 'nav_menu_dropdown', __('Custom Menu Dropdown'), $widget_ops );
+		$widget_ops = array( 'description' => esc_html__( 'Add a custom menu dropdown to your sidebar.', 'beng' ) );
+		parent::__construct( 'nav_menu_dropdown', esc_html__( 'Custom Menu Dropdown', 'beng' ), $widget_ops );
 	}
 
 
@@ -29,7 +29,7 @@
 			'fallback_cb' => '',
 			'menu'        => $nav_menu,
 			'walker'         => new Walker_Nav_Menu_Dropdown(),
-			'items_wrap'     => '<div class="select-menu"><form><label for="menu-dropdown" class="screen-reader-text">Navigate to...</label><select name="menu-dropdown" onchange="if (this.value) window.location.href=this.value">%3$s</select></form></div>',
+			'items_wrap'     => '<div class="select-menu"><form><label for="menu-dropdown" class="screen-reader-text">'.esc_html__( 'Navigate to...', 'beng' ).'</label><select name="menu-dropdown" onchange="if (this.value) window.location.href=this.value">%3$s</select></form></div>',
 		);
 
 
@@ -45,7 +45,7 @@
 			$instance['title'] = sanitize_text_field( stripslashes( $new_instance['title'] ) );
 		}
 		if ( ! empty( $new_instance['nav_menu'] ) ) {
-			$instance['nav_menu'] = (int) $new_instance['nav_menu'];
+			$instance['nav_menu'] = absint( $new_instance['nav_menu'] );
 		}
 		return $instance;
 	}
@@ -68,17 +68,17 @@
 				$url = admin_url( 'nav-menus.php' );
 			}
 			?>
-			<?php echo sprintf( __( 'No menus have been created yet. <a href="%s">Create some</a>.' ), esc_attr( $url ) ); ?>
+			<?php echo sprintf( esc_html__( 'No menus have been created yet. <a href="%s">Create some</a>.', 'beng' ), esc_attr( $url ) ); ?>
 		</p>
 		<div class="nav-menu-widget-form-controls" <?php if ( empty( $menus ) ) { echo ' style="display:none" '; } ?>>
 			<p>
-				<label for="<?php echo $this->get_field_id( 'title' ); ?>"><?php _e( 'Title:' ) ?></label>
+				<label for="<?php echo $this->get_field_id( 'title' ); ?>"><?php esc_html_e( 'Title:' ) ?></label>
 				<input type="text" class="widefat" id="<?php echo $this->get_field_id( 'title' ); ?>" name="<?php echo $this->get_field_name( 'title' ); ?>" value="<?php echo esc_attr( $title ); ?>"/>
 			</p>
 			<p>
-				<label for="<?php echo $this->get_field_id( 'nav_menu' ); ?>"><?php _e( 'Select Menu:' ); ?></label>
+				<label for="<?php echo $this->get_field_id( 'nav_menu' ); ?>"><?php esc_html_e( 'Select Menu:', 'beng'  ); ?></label>
 				<select id="<?php echo $this->get_field_id( 'nav_menu' ); ?>" name="<?php echo $this->get_field_name( 'nav_menu' ); ?>">
-					<option value="0"><?php _e( '&mdash; Select &mdash;' ); ?></option>
+					<option value="0"><?php esc_html_e( '&mdash; Select &mdash;', 'beng'  ); ?></option>
 					<?php foreach ( $menus as $menu ) : ?>
 						<option value="<?php echo esc_attr( $menu->term_id ); ?>" <?php selected( $nav_menu, $menu->term_id ); ?>>
 							<?php echo esc_html( $menu->name ); ?>

@@ -5,8 +5,8 @@
 
 
 	public function __construct() {
-		$widget_ops = array( 'description' => __('Display events from the Berkeley Events Calendar.') );
-		parent::__construct( 'berkeley_calendar_xml', __('Berkeley Calendar Feed'), $widget_ops );
+		$widget_ops = array( 'description' => esc_html__( 'Display events from the Berkeley Events Calendar.', 'beng' ) );
+		parent::__construct( 'berkeley_calendar_xml', esc_html__( 'Berkeley Calendar Feed', 'beng' ) , $widget_ops );
 	}
 
 
@@ -38,8 +38,6 @@
 			$format = 'xml';
 		elseif ( isset( $content->channel ) )
 			$format = 'rss';
-		else
-			break;
 		
 		if ( !isset( $instance['num'] ) || empty( $instance['num'] ) ) {
 			if ( 'xml' == $format )
@@ -64,13 +62,15 @@
 			}	
 			else {
 				$event = $content->channel->item[$i];
-				$date = false;
-				$url = $event->guid;
-				$title = sprintf( '<a href="%s">%s</a>', $url, $event->title );
+				if ( is_object( $event ) ) {
+					$date = false;
+					$url = $event->guid;
+					$title = sprintf( '<a href="%s">%s</a>', $url, $event->title );
+				}
 			}
 			
 			
-			printf( '<li class="event"> <h4 class="event-title">%s</h4>', $title );
+			printf( '<li class="event"> <h4 class="event-title">%s</h4>', esc_html( $title ) );
 			
 			if ( 'xml' == $format && $instance['display']['date'] ) {
 				$fulldate = date_create_from_format( 'Y-m-d', $date );
@@ -109,7 +109,7 @@
 				printf( '<p class="event-speakers">%s</p>', implode( '<br/>', array_filter( $speakers ) ) );
 			}
 			
-			if ( $instance['display']['desc'] ) {
+			if ( isset( $instance['display'] ) && $instance['display']['desc'] ) {
 				if ( 'xml' == $format && isset( $event->ShortDescription ) ) 	
 					printf( '<p class="event-desc">%s</p>', $event->ShortDescription );
 				elseif ( isset( $event->description ) ) {
@@ -139,19 +139,19 @@
 			$instance['title'] = sanitize_text_field( stripslashes( $new_instance['title'] ) );
 		}
 		if ( ! empty( $new_instance['url'] ) ) {
-			$instance['url'] = $new_instance['url'];
+			$instance['url'] = esc_url_raw( $new_instance['url'] );
 		}
 		if ( ! empty( $new_instance['trim'] ) ) {
-			$instance['trim'] = (int)$new_instance['trim'];
+			$instance['trim'] = absint($new_instance['trim'] );
 		}
 		if ( ! isset( $new_instance['num'] ) ) { // allow 0
 			$instance['num'] = 5;
 		}
 		else {
-			$instance['num'] = (int)$new_instance['num'];
+			$instance['num'] = absint($new_instance['num'] );
 		}
 		if ( ! empty( $new_instance['display'] ) ) {
-			$instance['display'] = $new_instance['display'];
+			$instance['display'] = absint( $new_instance['display'] );
 		}
 		return $instance;
 	}
@@ -161,39 +161,46 @@
 		$url = isset( $instance['url'] ) ? $instance['url'] : '';
 		$num = isset( $instance['num'] ) ? $instance['num'] : '';
 		$trim = isset( $instance['trim'] ) ? $instance['trim'] : '';
-		$display = isset( $instance['display'] ) ? $instance['display'] : array();
+		$display = isset( $instance['display'] ) ? $instance['display'] : array(
+			'num' => 5,
+			'date' => '',
+			'times' => '',
+			'locations' => '',
+			'speaker' => '',
+			'desc' => ''
+		);
 
 		?>
 		<div class="events-widget-form-controls">
 			<p>
-				<label for="<?php echo $this->get_field_id( 'title' ); ?>"><?php _e( 'Title:' ) ?></label>
+				<label for="<?php echo $this->get_field_id( 'title' ); ?>"><?php esc_html_e( 'Title:', 'beng' ) ?></label>
 				<input type="text" class="widefat" id="<?php echo $this->get_field_id( 'title' ); ?>" name="<?php echo $this->get_field_name( 'title' ); ?>" value="<?php echo esc_attr( $title ); ?>"/>
 			</p>
 			<p>
-				<label for="<?php echo $this->get_field_id( 'url' ); ?>"><?php _e( 'Events Feed URL (RSS or XML):' ) ?></label>
+				<label for="<?php echo $this->get_field_id( 'url' ); ?>"><?php esc_html_e( 'Events Feed URL (RSS or XML):' , 'beng' ) ?></label>
 				<input type="text" class="widefat" id="<?php echo $this->get_field_id( 'url' ); ?>" name="<?php echo $this->get_field_name( 'url' ); ?>" value="<?php echo esc_attr( $url ); ?>"/>
 			</p>
 			<p>
-				<label for="<?php echo $this->get_field_id( 'num' ); ?>"><?php _e( 'Number of events to display:' ) ?></label>
+				<label for="<?php echo $this->get_field_id( 'num' ); ?>"><?php esc_html_e( 'Number of events to display:' ) ?></label>
 				<input type="text" class="inline" size="1" id="<?php echo $this->get_field_id( 'num' ); ?>" name="<?php echo $this->get_field_name( 'num' ); ?>" value="<?php echo esc_attr( $num ); ?>"/><br />
-				<span class="description"><?php _e('Enter 0 to display all available events.'); ?></span>
+				<span class="description"><?php esc_html_e( 'Enter 0 to display all available events.', 'beng' ); ?></span>
 			</p>
-			<p>	<?php _e( 'Display: '); ?> <br />
+			<p>	<?php esc_html_e( 'Display: '); ?> <br />
 				
-				<label>	<input type="checkbox" class="widefat" value="1" name="<?php echo $this->get_field_name( 'display' ); ?>[date]" <?php checked( 1, $display['date'] ); ?> /> <?php _e( 'Date *' ) ?></label> 
+				<label>	<input type="checkbox" class="widefat" value="1" name="<?php echo $this->get_field_name( 'display' ); ?>[date]" <?php checked( 1, $display['date'] ); ?> /> <?php esc_html_e( 'Date *', 'beng'  ) ?></label> 
 				<br>
-				<label>	<input type="checkbox" class="widefat" value="1" name="<?php echo $this->get_field_name( 'display' ); ?>[times]" <?php checked( 1, $display['times'] ); ?> /> <?php _e( 'Start and End Times *' ) ?></label>
+				<label>	<input type="checkbox" class="widefat" value="1" name="<?php echo $this->get_field_name( 'display' ); ?>[times]" <?php checked( 1, $display['times'] ); ?> /> <?php esc_html_e( 'Start and End Times *', 'beng'  ) ?></label>
 				<br>
-				<label>	<input type="checkbox" class="widefat" value="1" name="<?php echo $this->get_field_name( 'display' ); ?>[locations]" <?php checked( 1, $display['locations'] ); ?> /> <?php _e( 'Location(s) *' ) ?></label>
+				<label>	<input type="checkbox" class="widefat" value="1" name="<?php echo $this->get_field_name( 'display' ); ?>[locations]" <?php checked( 1, $display['locations'] ); ?> /> <?php esc_html_e( 'Location(s) *', 'beng'  ) ?></label>
 				<br>
-				<label>	<input type="checkbox" class="widefat" value="1" name="<?php echo $this->get_field_name( 'display' ); ?>[speaker]" <?php checked( 1, $display['speaker'] ); ?> /> <?php _e( 'Speaker(s) *' ) ?></label>
+				<label>	<input type="checkbox" class="widefat" value="1" name="<?php echo $this->get_field_name( 'display' ); ?>[speaker]" <?php checked( 1, $display['speaker'] ); ?> /> <?php esc_html_e( 'Speaker(s) *', 'beng'  ) ?></label>
 				<br>
-				<label>	<input type="checkbox" class="widefat" value="1" name="<?php echo $this->get_field_name( 'display' ); ?>[desc]" <?php checked( 1, $display['desc'] ); ?> /> <?php _e( 'Description' ) ?></label>
+				<label>	<input type="checkbox" class="widefat" value="1" name="<?php echo $this->get_field_name( 'display' ); ?>[desc]" <?php checked( 1, $display['desc'] ); ?> /> <?php esc_html_e( 'Description', 'beng'  ) ?></label>
 			</p>
-			<p><span class="description"><?php _e( '* Options for XML feeds only.' ); ?></span></p>
+			<p><span class="description"><?php esc_html_e( '* Options for XML feeds only.', 'beng'  ); ?></span></p>
 			<p>
-				<label for="<?php echo $this->get_field_id( 'num' ); ?>"><?php _e( 'Trim RSS descriptions to ' ) ?>
-				<input type="text" class="inline" size="1" id="<?php echo $this->get_field_id( 'trim' ); ?>" name="<?php echo $this->get_field_name( 'trim' ); ?>" value="<?php echo esc_attr( $trim ); ?>"/> <?php _e( ' paragraphs' ); ?></label>
+				<label for="<?php echo $this->get_field_id( 'trim' ); ?>"><?php esc_html_e( 'Trim RSS descriptions to ', 'beng'  ) ?>
+				<input type="text" class="inline" size="1" id="<?php echo $this->get_field_id( 'trim' ); ?>" name="<?php echo $this->get_field_name( 'trim' ); ?>" value="<?php echo esc_attr( $trim ); ?>"/> <?php esc_html_e( ' paragraphs', 'beng'  ); ?></label>
 			</p>
 			
 		</div>

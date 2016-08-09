@@ -3,7 +3,7 @@
 Plugin Name: Berkeley Engineering Widgets
 Description: Creates custom widgets for the Berkeley Engineering sites.
 Author: Stephanie Leary
-Version: 1.3.4
+Version: 1.4
 Author URI: http://stephanieleary.com
 Text Domain: beng
 GitHub Plugin URI: https://github.com/sillybean/berkeley-widgets
@@ -29,7 +29,7 @@ function berkeley_widgets_scripts() {
 	if ( $screen->id !== "widgets" )
 		return;
 	wp_enqueue_script( 'populate-taxonomy-terms', plugins_url( '/js/populate-terms.js', __FILE__ ), 'jquery' );
-	wp_localize_script( 'populate-taxonomy-terms', 'taxonomyTerms', array( 'ajaxurl' => admin_url( 'admin-ajax.php' )));
+	wp_localize_script( 'populate-taxonomy-terms', 'Berkeley_Term_Posts_Widget_taxonomyTerms', array( 'ajaxurl' => admin_url( 'admin-ajax.php' )));
 }
 
 include( 'inc/calendar-feed.php' );

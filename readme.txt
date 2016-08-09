@@ -3,12 +3,12 @@ Contributors: sillybean
 Author: Stephanie Leary
 Author URI: http://stephanieleary.com
 GitHub Plugin URI: https://github.com/sillybean/berkeley-widgets
-GitHub Branch:     master
 Description: Custom post types and taxonomies, plus various helper filters and Dashboard widget.
 License: GPL2
+Text domain: beng
 Requires at least: 3.1
 Tested up to: 4.6
-Stable tag: 1.3.4
+Stable tag: 1.4
 
 == Description ==
 
@@ -25,6 +25,17 @@ Creates custom widgets for Berkeley Engineering sites:
 
 == Changelog ==
 
+= 1.4 =
+* Posts by Term widget query rewrite
+* Added text domain throughout
+* Prefixed ajaxurl var and widget_arg filter
+* removed bad 'break'
+* Check for existence of functions in content model plugin
+* Check for $event object in calendar feed before trying to fetch GUID and title
+* Check for $instance['display'] before trying to display
+* Widget form defaults to prevent index warnings
+* Escaping throughout
+* (int) -> absint()
 = 1.3.4 =
 * Added form label to dropdown menu for accessibility.
 = 1.3.3 =

@@ -5,8 +5,8 @@
  class Berkeley_Taxonomy_List_Widget extends WP_Widget {
 
 	public function __construct() {
-		$widget_ops = array( 'description' => __('Add a simple list of taxonomy terms to your sidebar.') );
-		parent::__construct( 'tax_term_list', __('Taxonomy List'), $widget_ops );
+		$widget_ops = array( 'description' => esc_html__('Add a simple list of taxonomy terms to your sidebar.') );
+		parent::__construct( 'tax_term_list', esc_html__('Taxonomy List'), $widget_ops );
 	}
 
 
@@ -33,7 +33,7 @@
 		if ( count( $tax_obj->object_type ) > 1 )
 			$term_ids =	get_term_ids_limited_to_post_type( $tax, $type );
 		
-		if ( is_taxonomy_hierarchical( $tax ) )
+		if ( is_taxonomy_hierarchical( $tax ) && function_exists( 'get_terms_parent_ids' ) )
 			$term_ids = get_terms_parent_ids( $term_ids, $tax );
 		
 		if ( !$term_ids )
@@ -94,13 +94,13 @@
 		?>
 		<div class="tax-list-widget-form-controls" <?php if ( empty( $taxonomies ) ) { echo ' style="display:none" '; } ?>>
 			<p>
-				<label for="<?php echo $this->get_field_id( 'title' ); ?>"><?php _e( 'Title:' ) ?></label>
+				<label for="<?php echo $this->get_field_id( 'title' ); ?>"><?php esc_html_e( 'Title:' ) ?></label>
 				<input type="text" class="widefat" id="<?php echo $this->get_field_id( 'title' ); ?>" name="<?php echo $this->get_field_name( 'title' ); ?>" value="<?php echo esc_attr( $title ); ?>"/>
 			</p>
 			<p>
-				<label for="<?php echo $this->get_field_id( 'tax' ); ?>"><?php _e( 'Select Taxonomy:' ); ?></label><br>
+				<label for="<?php echo $this->get_field_id( 'tax' ); ?>"><?php esc_html_e( 'Select Taxonomy:' ); ?></label><br>
 				<select id="<?php echo $this->get_field_id( 'tax' ); ?>" name="<?php echo $this->get_field_name( 'tax' ); ?>" class="widefat">
-					<option value="0"><?php _e( '&mdash; Select &mdash;' ); ?></option>
+					<option value="0"><?php esc_html_e( '&mdash; Select &mdash;' ); ?></option>
 					<?php foreach ( $taxonomies as $taxonomy ) : ?>
 						<option value="<?php echo esc_attr( $taxonomy->name ); ?>" <?php selected( $tax, $taxonomy->name ); ?>>
 							<?php echo esc_html( $taxonomy->label ); ?>
