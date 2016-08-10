@@ -5,8 +5,8 @@
 
 
 	public function __construct() {
-		$widget_ops = array( 'description' => esc_html__( 'Display events from the Berkeley Events Calendar.', 'beng' ) );
-		parent::__construct( 'berkeley_calendar_xml', esc_html__( 'Berkeley Calendar Feed', 'beng' ) , $widget_ops );
+		$widget_ops = array( 'description' => esc_html__( 'Display events from the Berkeley Events Calendar.', 'berkeley-widgets' ) );
+		parent::__construct( 'berkeley_calendar_xml', esc_html__( 'Berkeley Calendar Feed', 'berkeley-widgets' ) , $widget_ops );
 	}
 
 
@@ -173,34 +173,34 @@
 		?>
 		<div class="events-widget-form-controls">
 			<p>
-				<label for="<?php echo $this->get_field_id( 'title' ); ?>"><?php esc_html_e( 'Title:', 'beng' ) ?></label>
+				<label for="<?php echo $this->get_field_id( 'title' ); ?>"><?php esc_html_e( 'Title:', 'berkeley-widgets' ) ?></label>
 				<input type="text" class="widefat" id="<?php echo $this->get_field_id( 'title' ); ?>" name="<?php echo $this->get_field_name( 'title' ); ?>" value="<?php echo esc_attr( $title ); ?>"/>
 			</p>
 			<p>
-				<label for="<?php echo $this->get_field_id( 'url' ); ?>"><?php esc_html_e( 'Events Feed URL (RSS or XML):' , 'beng' ) ?></label>
+				<label for="<?php echo $this->get_field_id( 'url' ); ?>"><?php esc_html_e( 'Events Feed URL (RSS or XML):' , 'berkeley-widgets' ) ?></label>
 				<input type="text" class="widefat" id="<?php echo $this->get_field_id( 'url' ); ?>" name="<?php echo $this->get_field_name( 'url' ); ?>" value="<?php echo esc_attr( $url ); ?>"/>
 			</p>
 			<p>
 				<label for="<?php echo $this->get_field_id( 'num' ); ?>"><?php esc_html_e( 'Number of events to display:' ) ?></label>
 				<input type="text" class="inline" size="1" id="<?php echo $this->get_field_id( 'num' ); ?>" name="<?php echo $this->get_field_name( 'num' ); ?>" value="<?php echo esc_attr( $num ); ?>"/><br />
-				<span class="description"><?php esc_html_e( 'Enter 0 to display all available events.', 'beng' ); ?></span>
+				<span class="description"><?php esc_html_e( 'Enter 0 to display all available events.', 'berkeley-widgets' ); ?></span>
 			</p>
 			<p>	<?php esc_html_e( 'Display: '); ?> <br />
 				
-				<label>	<input type="checkbox" class="widefat" value="1" name="<?php echo $this->get_field_name( 'display' ); ?>[date]" <?php checked( 1, $display['date'] ); ?> /> <?php esc_html_e( 'Date *', 'beng'  ) ?></label> 
+				<label>	<input type="checkbox" class="widefat" value="1" name="<?php echo $this->get_field_name( 'display' ); ?>[date]" <?php checked( 1, $display['date'] ); ?> /> <?php esc_html_e( 'Date *', 'berkeley-widgets'  ) ?></label> 
 				<br>
-				<label>	<input type="checkbox" class="widefat" value="1" name="<?php echo $this->get_field_name( 'display' ); ?>[times]" <?php checked( 1, $display['times'] ); ?> /> <?php esc_html_e( 'Start and End Times *', 'beng'  ) ?></label>
+				<label>	<input type="checkbox" class="widefat" value="1" name="<?php echo $this->get_field_name( 'display' ); ?>[times]" <?php checked( 1, $display['times'] ); ?> /> <?php esc_html_e( 'Start and End Times *', 'berkeley-widgets'  ) ?></label>
 				<br>
-				<label>	<input type="checkbox" class="widefat" value="1" name="<?php echo $this->get_field_name( 'display' ); ?>[locations]" <?php checked( 1, $display['locations'] ); ?> /> <?php esc_html_e( 'Location(s) *', 'beng'  ) ?></label>
+				<label>	<input type="checkbox" class="widefat" value="1" name="<?php echo $this->get_field_name( 'display' ); ?>[locations]" <?php checked( 1, $display['locations'] ); ?> /> <?php esc_html_e( 'Location(s) *', 'berkeley-widgets'  ) ?></label>
 				<br>
-				<label>	<input type="checkbox" class="widefat" value="1" name="<?php echo $this->get_field_name( 'display' ); ?>[speaker]" <?php checked( 1, $display['speaker'] ); ?> /> <?php esc_html_e( 'Speaker(s) *', 'beng'  ) ?></label>
+				<label>	<input type="checkbox" class="widefat" value="1" name="<?php echo $this->get_field_name( 'display' ); ?>[speaker]" <?php checked( 1, $display['speaker'] ); ?> /> <?php esc_html_e( 'Speaker(s) *', 'berkeley-widgets'  ) ?></label>
 				<br>
-				<label>	<input type="checkbox" class="widefat" value="1" name="<?php echo $this->get_field_name( 'display' ); ?>[desc]" <?php checked( 1, $display['desc'] ); ?> /> <?php esc_html_e( 'Description', 'beng'  ) ?></label>
+				<label>	<input type="checkbox" class="widefat" value="1" name="<?php echo $this->get_field_name( 'display' ); ?>[desc]" <?php checked( 1, $display['desc'] ); ?> /> <?php esc_html_e( 'Description', 'berkeley-widgets'  ) ?></label>
 			</p>
-			<p><span class="description"><?php esc_html_e( '* Options for XML feeds only.', 'beng'  ); ?></span></p>
+			<p><span class="description"><?php esc_html_e( '* Options for XML feeds only.', 'berkeley-widgets'  ); ?></span></p>
 			<p>
-				<label for="<?php echo $this->get_field_id( 'trim' ); ?>"><?php esc_html_e( 'Trim RSS descriptions to ', 'beng'  ) ?>
-				<input type="text" class="inline" size="1" id="<?php echo $this->get_field_id( 'trim' ); ?>" name="<?php echo $this->get_field_name( 'trim' ); ?>" value="<?php echo esc_attr( $trim ); ?>"/> <?php esc_html_e( ' paragraphs', 'beng'  ); ?></label>
+				<label for="<?php echo $this->get_field_id( 'trim' ); ?>"><?php esc_html_e( 'Trim RSS descriptions to ', 'berkeley-widgets'  ) ?>
+				<input type="text" class="inline" size="1" id="<?php echo $this->get_field_id( 'trim' ); ?>" name="<?php echo $this->get_field_name( 'trim' ); ?>" value="<?php echo esc_attr( $trim ); ?>"/> <?php esc_html_e( ' paragraphs', 'berkeley-widgets'  ); ?></label>
 			</p>
 			
 		</div>

@@ -5,10 +5,10 @@ Author URI: http://stephanieleary.com
 GitHub Plugin URI: https://github.com/sillybean/berkeley-widgets
 Description: Custom post types and taxonomies, plus various helper filters and Dashboard widget.
 License: GPL2
-Text domain: beng
+Text domain: berkeley-widgets
 Requires at least: 3.1
 Tested up to: 4.6
-Stable tag: 1.4
+Stable tag: 1.4.1
 
 == Description ==
 
@@ -25,6 +25,9 @@ Creates custom widgets for Berkeley Engineering sites:
 
 == Changelog ==
 
+= 1.4.1 =
+* Use unique text domain
+* Add a few more text domains
 = 1.4 =
 * Posts by Term widget query rewrite
 * Added text domain throughout
