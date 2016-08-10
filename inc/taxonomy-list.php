@@ -30,11 +30,11 @@
 			$type = get_query_var( 'post_type' );
 		
 		// if this is a shared taxonomy, narrow the list to posts of the currently viewed type
-		if ( count( $tax_obj->object_type ) > 1 )
+		if ( count( $tax_obj->object_type ) > 1 && function_exists( 'berkeley_get_term_ids_limited_to_post_type' ) )
 			$term_ids =	berkeley_get_term_ids_limited_to_post_type( $tax, $type );
 		
-		if ( is_taxonomy_hierarchical( $tax ) && function_exists( 'get_terms_parent_ids' ) )
-			$term_ids = get_terms_parent_ids( $term_ids, $tax );
+		if ( is_taxonomy_hierarchical( $tax ) && function_exists( 'berkeley_get_terms_parent_ids' ) )
+			$term_ids = berkeley_get_terms_parent_ids( $term_ids, $tax );
 		
 		if ( !$term_ids )
 			return;

@@ -28,6 +28,7 @@ Creates custom widgets for Berkeley Engineering sites:
 = 1.4.1 =
 * Use unique text domain
 * Add a few more text domains
+* Prefix shared taxonomy functions
 = 1.4 =
 * Posts by Term widget query rewrite
 * Added text domain throughout
