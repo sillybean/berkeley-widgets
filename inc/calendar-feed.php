@@ -36,7 +36,7 @@
 		
 		if ( isset( $content->Event[0] ) )
 			$format = 'xml';
-		elseif ( isset( $content->channel ) )
+		else
 			$format = 'rss';
 		
 		if ( !isset( $instance['num'] ) || empty( $instance['num'] ) ) {
@@ -58,7 +58,7 @@
 				
 				$url = sprintf( 'http://events.berkeley.edu/?event_ID=%d&date=%s&tab=all_events', $event->ID, $date );
 				
-				$title = sprintf( '<a href="%s">%s</a>', $url, $event->Title );
+				$title = sprintf( '<a href="%s">%s</a>', $url, wp_kses( $event->Title ) );
 			}	
 			else {
 				$event = $content->channel->item[$i];
@@ -69,8 +69,7 @@
 				}
 			}
 			
-			
-			printf( '<li class="event"> <h4 class="event-title">%s</h4>', esc_html( $title ) );
+			printf( '<li class="event"> <h4 class="event-title">%s</h4>', wp_kses( $title ) );
 			
 			if ( 'xml' == $format && $instance['display']['date'] ) {
 				$fulldate = date_create_from_format( 'Y-m-d', $date );

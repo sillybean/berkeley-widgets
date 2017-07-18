@@ -8,7 +8,7 @@ License: GPL2
 Text domain: berkeley-widgets
 Requires at least: 3.1
 Tested up to: 4.7.3
-Stable tag: 1.4.2
+Stable tag: 1.4.3
 
 == Description ==
 
@@ -25,6 +25,9 @@ Creates custom widgets for Berkeley Engineering sites:
 
 == Changelog ==
 
+= 1.4.3 =
+* Less specific test for feed format (PHP 7 compatibility)
+* Use wp_kses() instead of esc_html() for event titles
 = 1.4.2 =
 * GitHub version bump
 = 1.4.1 =
