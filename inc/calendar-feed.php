@@ -69,7 +69,7 @@
 				}
 			}
 			
-			printf( '<li class="event"> <h4 class="event-title">%s</h4>', wp_kses( $title ) );
+			printf( '<li class="event"> <h4 class="event-title">%s</h4>', wp_kses_post( $title ) );
 			
 			if ( 'xml' == $format && $instance['display']['date'] ) {
 				$fulldate = date_create_from_format( 'Y-m-d', $date );
