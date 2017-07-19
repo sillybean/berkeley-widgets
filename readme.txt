@@ -7,8 +7,8 @@ Description: Custom post types and taxonomies, plus various helper filters and D
 License: GPL2
 Text domain: berkeley-widgets
 Requires at least: 3.1
-Tested up to: 4.7.3
-Stable tag: 1.4.3
+Tested up to: 4.8
+Stable tag: 1.4.4
 
 == Description ==
 
@@ -25,6 +25,9 @@ Creates custom widgets for Berkeley Engineering sites:
 
 == Changelog ==
 
+= 1.4.4 =
+* Use wp_kses_post() instead of wp_kses() for predefined allowed HTML array
+* Fix sanitization of $instance['display'] in widget ops
 = 1.4.3 =
 * Less specific test for feed format (PHP 7 compatibility)
 * Use wp_kses() instead of esc_html() for event titles

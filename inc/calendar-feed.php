@@ -58,7 +58,7 @@
 				
 				$url = sprintf( 'http://events.berkeley.edu/?event_ID=%d&date=%s&tab=all_events', $event->ID, $date );
 				
-				$title = sprintf( '<a href="%s">%s</a>', $url, wp_kses( $event->Title ) );
+				$title = sprintf( '<a href="%s">%s</a>', $url, wp_kses_post( $event->Title ) );
 			}	
 			else {
 				$event = $content->channel->item[$i];
@@ -150,7 +150,7 @@
 			$instance['num'] = absint($new_instance['num'] );
 		}
 		if ( ! empty( $new_instance['display'] ) ) {
-			$instance['display'] = absint( $new_instance['display'] );
+			$instance['display'] = array_map( 'absint', $new_instance['display'] );
 		}
 		return $instance;
 	}

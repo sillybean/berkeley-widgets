@@ -3,7 +3,7 @@
 Plugin Name: Berkeley Engineering Widgets
 Description: Creates custom widgets for the Berkeley Engineering sites.
 Author: Stephanie Leary
-Version: 1.4.2
+Version: 1.4.4
 Author URI: http://stephanieleary.com
 Text Domain: berkeley-widgets
 GitHub Plugin URI: https://github.com/sillybean/berkeley-widgets
