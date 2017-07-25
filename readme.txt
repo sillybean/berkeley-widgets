@@ -8,7 +8,7 @@ License: GPL2
 Text domain: berkeley-widgets
 Requires at least: 3.1
 Tested up to: 4.8
-Stable tag: 1.4.4
+Stable tag: 1.4.5
 
 == Description ==
 
@@ -25,6 +25,8 @@ Creates custom widgets for Berkeley Engineering sites:
 
 == Changelog ==
 
+= 1.4.5 =
+* Remove duplicate escape function in wp_remote_request() URL
 = 1.4.4 =
 * Use wp_kses_post() instead of wp_kses() for predefined allowed HTML array
 * Fix sanitization of $instance['display'] in widget ops

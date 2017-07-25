@@ -13,7 +13,7 @@
 	public function widget( $args, $instance ) {
 		
 		$response = wp_remote_request(
-		     esc_url( $instance['url'] ),
+		     $instance['url'],
 		     array( 'ssl_verify' => true )
 		);
 		
