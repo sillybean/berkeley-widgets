@@ -24,6 +24,9 @@
 		$content = new SimpleXMLElement( $content );
 		
 		$instance['title'] = apply_filters( 'widget_title', empty( $instance['title'] ) ? '' : $instance['title'], $instance, $this->id_base );
+		if ( filter_var( $instance['link'], FILTER_VALIDATE_URL ) ) {
+		    $instance['title'] = sprintf( '<a href="%s">%s</a>', $instance['title'], esc_url( $instance['link'] ) );
+		}
 
 		echo $args['before_widget'];
 
@@ -140,6 +143,9 @@
 		if ( ! empty( $new_instance['url'] ) ) {
 			$instance['url'] = esc_url_raw( $new_instance['url'] );
 		}
+		if ( ! empty( $new_instance['link'] ) ) {
+			$instance['link'] = esc_url_raw( $new_instance['link'] );
+		}
 		if ( ! empty( $new_instance['trim'] ) ) {
 			$instance['trim'] = absint($new_instance['trim'] );
 		}
@@ -158,6 +164,7 @@
 	public function form( $instance ) {
 		$title = isset( $instance['title'] ) ? $instance['title'] : '';
 		$url = isset( $instance['url'] ) ? $instance['url'] : '';
+		$link = isset( $instance['link'] ) ? $instance['link'] : '';
 		$num = isset( $instance['num'] ) ? $instance['num'] : '';
 		$trim = isset( $instance['trim'] ) ? $instance['trim'] : '';
 		$display = isset( $instance['display'] ) ? $instance['display'] : array(
@@ -178,6 +185,10 @@
 			<p>
 				<label for="<?php echo $this->get_field_id( 'url' ); ?>"><?php esc_html_e( 'Events Feed URL (RSS or XML):' , 'berkeley-widgets' ) ?></label>
 				<input type="text" class="widefat" id="<?php echo $this->get_field_id( 'url' ); ?>" name="<?php echo $this->get_field_name( 'url' ); ?>" value="<?php echo esc_attr( $url ); ?>"/>
+			</p>
+			<p>
+				<label for="<?php echo $this->get_field_id( 'link' ); ?>"><?php esc_html_e( 'Link widget title to URL:' , 'berkeley-widgets' ) ?></label>
+				<input type="text" class="widefat" id="<?php echo $this->get_field_id( 'link' ); ?>" name="<?php echo $this->get_field_name( 'link' ); ?>" value="<?php echo esc_attr( $link ); ?>"/>
 			</p>
 			<p>
 				<label for="<?php echo $this->get_field_id( 'num' ); ?>"><?php esc_html_e( 'Number of events to display:' ) ?></label>

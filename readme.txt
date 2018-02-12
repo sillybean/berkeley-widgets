@@ -7,8 +7,8 @@ Description: Custom post types and taxonomies, plus various helper filters and D
 License: GPL2
 Text domain: berkeley-widgets
 Requires at least: 3.1
-Tested up to: 4.8
-Stable tag: 1.4.5
+Tested up to: 4.9.4
+Stable tag: 1.4.6
 
 == Description ==
 
@@ -25,6 +25,8 @@ Creates custom widgets for Berkeley Engineering sites:
 
 == Changelog ==
 
+= 1.4.6 =
+* Add widget title link option to calendar feed widget.
 = 1.4.5 =
 * Remove duplicate escape function in wp_remote_request() URL
 = 1.4.4 =
