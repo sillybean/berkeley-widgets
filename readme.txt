@@ -25,6 +25,9 @@ Creates custom widgets for Berkeley Engineering sites:
 
 == Changelog ==
 
+= 1.4.7 =
+* Add room number to event location
+* Fix event title in XML format
 = 1.4.6 =
 * Add widget title link option to calendar feed widget.
 = 1.4.5 =

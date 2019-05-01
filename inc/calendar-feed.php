@@ -61,7 +61,7 @@
 				
 				$url = sprintf( 'http://events.berkeley.edu/?event_ID=%d&date=%s&tab=all_events', $event->ID, $date );
 				
-				$title = sprintf( '<a href="%s">%s</a>', $url, wp_kses_post( $event->Title ) );
+				$title = sprintf( '<a href="%s">%s</a>', $url, wp_kses_post( $event->title ) );
 			}	
 			else {
 				$event = $content->channel->item[$i];
@@ -90,7 +90,7 @@
 			if ( 'xml' == $format && $instance['display']['locations'] && isset( $event->Locations ) ) {
 				$eventlocations = array();	
 				foreach ( $event->Locations->Location as $location ) {
-					 $eventlocations[] = $location->LocationName;
+					 $eventlocations[] = $location->LocationName . ' ' . $location->Address->Room;
 				}
 				printf( '<p class="event-locations">%s</p>', implode( ', ', array_filter( $eventlocations ) ) );
 			}
