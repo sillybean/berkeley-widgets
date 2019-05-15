@@ -8,7 +8,7 @@ License: GPL2
 Text domain: berkeley-widgets
 Requires at least: 3.1
 Tested up to: 4.9.4
-Stable tag: 1.4.7
+Stable tag: 1.4.8
 
 == Description ==
 
@@ -25,6 +25,9 @@ Creates custom widgets for Berkeley Engineering sites:
 
 == Changelog ==
 
+= 1.4.8 =
+* Move room number to location prefix
+* Fix event title
 = 1.4.7 =
 * Add room number to event location
 * Fix event title in XML format
