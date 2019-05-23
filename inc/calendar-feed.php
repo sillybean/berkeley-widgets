@@ -25,7 +25,7 @@
 		
 		$instance['title'] = apply_filters( 'widget_title', empty( $instance['title'] ) ? '' : $instance['title'], $instance, $this->id_base );
 		if ( filter_var( $instance['link'], FILTER_VALIDATE_URL ) ) {
-		    $instance['title'] = sprintf( '<a href="%s">%s</a>', $instance['title'], esc_url( $instance['link'] ) );
+		    $instance['title'] = sprintf( '<a href="%s">%s</a>', esc_url( $instance['link'], $instance['title'] ) );
 		}
 
 		echo $args['before_widget'];
