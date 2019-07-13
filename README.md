@@ -7,8 +7,8 @@ Description: Custom post types and taxonomies, plus various helper filters and D
 License: GPL2
 Text domain: berkeley-widgets
 Requires at least: 3.1
-Tested up to: 4.9.4
-Stable tag: 1.4.9
+Tested up to: 5.2.2
+Stable tag: 1.5.0
 
 == Description ==
 
@@ -25,6 +25,8 @@ Creates custom widgets for Berkeley Engineering sites:
 
 == Changelog ==
 
+= 1.5.0 =
+* handle empty RSS feeds
 = 1.4.9 =
 * Fix order of URL and title arguments in widget title, if URL is specified
 = 1.4.8 =
