@@ -42,12 +42,31 @@
 		else
 			$format = 'rss';
 		
-		if ( !isset( $instance['num'] ) || empty( $instance['num'] ) ) {
-			if ( 'xml' == $format )
-				$instance['num'] = count( $content->Event );
+		// count and check for empty <item>s
+		if ( 'xml' == $format )
+			$count = $content->Event->count();
+		else {
+			$items = (string)$content->channel->item;
+			if ( empty($items) )
+				$count = 0;
 			else
-				$instance['num'] = count( $content->channel->item );
+				$count = $content->channel->item->count();
 		}
+		
+		// use total number of items if user did not set a count
+		if ( !isset( $instance['num'] ) || empty( $instance['num'] ) ) {
+			$instance['num'] = $count;
+		}
+		
+		// print message and end widget if no items/Events
+		if ( !(string)$count ) {
+			echo '<p>' . __( 'No events listed.', 'beng' ) . '</p>';
+			echo $args['after_widget'];
+			return;
+		}
+		
+		// otherwise, open the list tag and start printing items
+		echo '<ul>';
 		
 		for ( $i = 0; $i < $instance['num']; $i++ ) {
 			
